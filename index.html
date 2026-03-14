@@ -10,8 +10,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --pp-red: #850707;
-    --pp-red-dark: #6a0505;
+    --pp-red: #D0333A;
+    --pp-red-dark: #b02a30;
     --taupe: #c4b49a;
     --taupe-light: #ede7dc;
     --champagne: #d4b97a;
@@ -34,7 +34,7 @@
 
   /* ── HEADER ── */
   .pp-header {
-    background: var(--pp-red);
+    background: #7a1e24;
     padding: 2.5rem 1.5rem 2rem;
     text-align: center;
     position: relative;
@@ -61,7 +61,7 @@
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--champagne);
+    color: rgba(255,255,255,0.5);
     margin-bottom: 0.75rem;
   }
 
@@ -76,15 +76,14 @@
 
   .pulse-title em {
     font-style: italic;
-    color: var(--champagne);
+    color: #D0333A;
   }
 
   .pulse-rule {
     width: 40px;
     height: 1px;
-    background: var(--champagne);
+    background: rgba(255,255,255,0.25);
     margin: 1.25rem auto;
-    opacity: 0.6;
   }
 
   .pulse-sub {
@@ -93,7 +92,28 @@
     font-weight: 400;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── DEADLINE STRIP ── */
+  .deadline-strip {
+    background: #f5f0eb;
+    border-bottom: 1px solid var(--border);
+    padding: 0.65rem 1.5rem;
+    text-align: center;
+  }
+
+  .deadline-strip p {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+
+  .deadline-strip p strong {
+    color: #D0333A;
+    font-weight: 600;
   }
 
   /* ── PROGRAM INTRO ── */
@@ -404,8 +424,13 @@
   <p class="pulse-eyebrow">Petit Philippe Presents</p>
   <h1 class="pulse-title">Petit <em>Pulse</em></h1>
   <div class="pulse-rule"></div>
-  <p class="pulse-sub">Brittan Vineyards &nbsp;·&nbsp; McMinnville, Oregon</p>
+  <p class="pulse-sub">Curated offers worth acting on</p>
 </header>
+
+<!-- DEADLINE STRIP -->
+<div class="deadline-strip">
+  <p>Current offer closes <strong>Friday, March 20 at 3 PM</strong> &nbsp;·&nbsp; While allocation lasts</p>
+</div>
 
 <!-- PROGRAM INTRO -->
 <section class="program-intro">
@@ -430,7 +455,7 @@
     </p>
   </div>
   <div class="offer-callout">
-    <p>All bottles are 5–10% off retail. Pulse pricing is available while allocation lasts — there is no deadline, only quantity.</p>
+    <p>All bottles are 5–10% off retail. This offer closes Friday, March 20 at 3 PM — or sooner if allocation runs out.</p>
   </div>
 </section>
 
