@@ -34,25 +34,75 @@
 
   /* ── HEADER ── */
   .pp-header {
-    background: var(--header-bg);
-    padding: 3rem 1.5rem 2.5rem;
-    text-align: center;
     position: relative;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     overflow: hidden;
+    background: var(--header-bg);
   }
 
-  .pp-header::before {
-    content: '';
+  .pp-header-photo {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 40px,
-      rgba(255,255,255,0.018) 40px,
-      rgba(255,255,255,0.018) 41px
+    background-image: url('Petit_Pulse_Lifestyle.png');
+    background-size: cover;
+    background-position: center left;
+    z-index: 0;
+  }
+
+  /* Gradient: photo visible left, fades to dark red right */
+  .pp-header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(90, 20, 20, 0.15) 0%,
+      rgba(90, 20, 20, 0.55) 38%,
+      rgba(80, 15, 18, 0.92) 62%,
+      rgba(75, 12, 15, 0.97) 100%
     );
-    pointer-events: none;
+    z-index: 1;
+  }
+
+  .pp-header-content {
+    position: relative;
+    z-index: 2;
+    width: 52%;
+    max-width: 480px;
+    padding: 3rem 2.5rem 3rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .pp-header {
+      justify-content: center;
+      min-height: 320px;
+    }
+    .pp-header-content {
+      width: 100%;
+      padding: 2.5rem 1.5rem;
+    }
+    .pp-header-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(80, 15, 18, 0.4) 0%,
+        rgba(75, 12, 15, 0.92) 50%,
+        rgba(75, 12, 15, 0.97) 100%
+      );
+    }
+  }
+
+  .pulse-icon {
+    width: 72px;
+    height: auto;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
   }
 
   .pulse-eyebrow {
@@ -62,12 +112,12 @@
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .pulse-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.4rem, 9vw, 3.4rem);
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
     font-weight: 300;
     color: #fff;
     line-height: 1.05;
@@ -83,21 +133,20 @@
     width: 32px;
     height: 1px;
     background: rgba(255,255,255,0.2);
-    margin: 1.4rem auto;
+    margin: 1.25rem auto;
   }
 
   /* ── OPENING MANIFESTO ── */
   .pulse-manifesto {
-    max-width: 480px;
-    margin: 0 auto;
+    max-width: 380px;
   }
 
   .pulse-manifesto p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 3vw, 1.15rem);
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
     font-weight: 300;
     font-style: italic;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.6);
     line-height: 1.85;
     text-align: center;
   }
@@ -105,11 +154,11 @@
   .pulse-manifesto .manifesto-closer {
     margin-top: 1.25rem;
     font-style: normal;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-family: 'Jost', sans-serif;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.32);
     font-weight: 400;
   }
 
@@ -442,18 +491,23 @@
 
 <!-- HEADER -->
 <header class="pp-header">
-  <p class="pulse-eyebrow">Petit Philippe Presents</p>
-  <h1 class="pulse-title">Petit <em>Pulse</em></h1>
-  <div class="pulse-rule"></div>
-  <div class="pulse-manifesto">
-    <p>
-      Every so often, something comes across our table<br>
-      that's worth acting on.<br><br>
-      Not because it's rare.<br>
-      Not because it's expensive.<br>
-      Because it's right.
-    </p>
-    <p class="manifesto-closer">Petit Pulse is how we share those moments.</p>
+  <div class="pp-header-photo"></div>
+  <div class="pp-header-overlay"></div>
+  <div class="pp-header-content">
+    <img class="pulse-icon" src="Petit_Pulse_Icon_Logo.png" alt="Petit Pulse">
+    <p class="pulse-eyebrow">Petit Philippe Presents</p>
+    <h1 class="pulse-title">Petit <em>Pulse</em></h1>
+    <div class="pulse-rule"></div>
+    <div class="pulse-manifesto">
+      <p>
+        Every so often, something comes across our table<br>
+        that's worth acting on.<br><br>
+        Not because it's rare.<br>
+        Not because it's expensive.<br>
+        Because it's right.
+      </p>
+      <p class="manifesto-closer">Petit Pulse is how we share those moments.</p>
+    </div>
   </div>
 </header>
 
@@ -493,7 +547,7 @@
   <p class="wines-section-label">9 Bottles &nbsp;·&nbsp; Available Now</p>
   <div class="wines-grid">
 
-    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-sparkling-brut-willamette.html" target="_top">
+    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-sparkling-brut.html" target="_top">
       <div class="wine-img-wrap">
         <img src="https://cdn.shoplightspeed.com/shops/640383/files/73936677/500x700x1/brittan-vineyards-brittan-vineyards-sparkling-brut.jpg" alt="Brittan Vineyards NV Estate Brut">
       </div>
@@ -641,21 +695,14 @@
 <div class="footer-note">
   <p>
     Available while allocation lasts. Shipping available to select states.<br>
-    Questions? <a href="mailto:info@petitphilippe.com">Reach us by email</a> or call <a href="tel:7043329910">(704) 332-9910</a>.
+    Questions? <a href="/cdn-cgi/l/email-protection#aec7c0c8c1eedecbdac7dadec6c7c2c7dedecb80cdc1c3">Reach us by email</a> or call <a href="tel:7043329910">(704) 332-9910</a>.
   </p>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Reports page height to parent so iframe can auto-expand
   function reportHeight() {
     var h = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: 'pp-pulse-height', height: h }, '*');
   }
-  window.addEventListener('load', reportHeight);
-  window.addEventListener('resize', reportHeight);
-  setTimeout(reportHeight, 800);
-  setTimeout(reportHeight, 2000);
-</script>
-
-</body>
-</html>
+  window.addEventListener('load', reportH
