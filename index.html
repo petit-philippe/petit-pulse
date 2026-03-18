@@ -331,17 +331,13 @@
     overflow: hidden;
   }
 
-  @media (min-width: 820px) {
-    .wines-grid { grid-template-columns: 1fr 1fr 1fr; }
-  }
-
-  @media (max-width: 380px) {
+  @media (max-width: 480px) {
     .wines-grid { grid-template-columns: 1fr; }
   }
 
   .wines-grid.grid-single {
     grid-template-columns: 1fr;
-    max-width: 280px;
+    max-width: 380px;
     margin: 0 auto;
   }
 
@@ -727,13 +723,17 @@
 
 <script>
   function reportHeight() {
-    var h = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: 'pp-pulse-height', height: h }, '*');
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    window.parent.postMessage({ type: 'pp-pulse-height', height: h + 60 }, '*');
   }
   window.addEventListener('load', reportHeight);
   window.addEventListener('resize', reportHeight);
-  setTimeout(reportHeight, 800);
-  setTimeout(reportHeight, 2000);
+  [200, 600, 1000, 1800, 3000].forEach(function(t) { setTimeout(reportHeight, t); });
 </script>
 
 </body>
