@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
+<script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
 
 
 <style>
@@ -455,7 +456,7 @@
     grid-template-columns: 1fr 1px 1fr 1px 1fr;
     gap: 0;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 4px 4px 0 0;
     overflow: hidden;
     background: var(--border);
   }
@@ -554,221 +555,63 @@
 
   .footer-note a:hover { text-decoration: underline; }
 
-  /* ── SIGNUP ACCORDION ── */
-  .pp-accordion-drawer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+  /* ── INLINE SIGNUP SECTION ── */
+  .pp-signup-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
-  .pp-accordion-drawer.is-open ~ * { }
-
-  /* When drawer is open, square off bottom corners of the rail above it */
-  .pp-accordion-drawer.is-open {
-    max-height: 800px;
-  }
-
-  /* Rail loses bottom radius when drawer is open */
-  .pp-accordion-drawer.is-open .cta-rail-inner,
-  .cta-rail-inner.drawer-open {
-    border-radius: 4px 4px 0 0;
-  }
-
-  .pp-accordion-drawer.is-open ~ .cta-rail-inner {
-    border-radius: 4px 4px 0 0;
-  }
-
-  .pp-accordion-inner {
+  .pp-signup-section-inner {
     border: 1px solid var(--border);
     border-top: none;
     border-radius: 0 0 4px 4px;
     background: #fff;
     padding: 2rem 2.5rem 1.75rem;
-  }
-
-  @media (max-width: 520px) {
-    .pp-accordion-inner { padding: 1.75rem 1.5rem 1.5rem; }
-  }
-
-  .pp-accordion-intro {
-    margin-bottom: 1.5rem;
     text-align: center;
   }
 
-  .pp-accordion-title {
+  @media (max-width: 520px) {
+    .pp-signup-section-inner { padding: 1.5rem; }
+  }
+
+  .pp-signup-eyebrow {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .pp-signup-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.3rem, 4vw, 1.6rem);
     font-weight: 300;
     color: var(--charcoal);
     line-height: 1.1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
 
-  .pp-accordion-title em { font-style: italic; color: var(--text-mid); }
+  .pp-signup-title em { font-style: italic; color: var(--text-mid); }
 
-  .pp-accordion-support {
+  .pp-signup-rule {
+    width: 24px;
+    height: 1px;
+    background: var(--border);
+    margin: 0.85rem auto 0.9rem;
+  }
+
+  .pp-signup-support {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.93rem;
     font-style: italic;
     font-weight: 300;
     color: var(--text-mid);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
-
-  .pp-accordion-rule {
-    width: 24px;
-    height: 1px;
-    background: var(--border);
-    margin: 1rem auto 1.5rem;
-  }
-
-  /* ── CC FORM OVERRIDES — scoped to .pp-accordion-inner ── */
-  .pp-accordion-inner .ctct-inline-form,
-  .pp-accordion-inner .ctct-form-defaults,
-  .pp-accordion-inner .ctct-form-wrapper {
-    background: transparent !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    font-family: 'Jost', sans-serif !important;
-  }
-
-  .pp-accordion-inner .ctct-form-header,
-  .pp-accordion-inner .ctct-form-logo,
-  .pp-accordion-inner h2.ctct-form-title {
-    display: none !important;
-  }
-
-  .pp-accordion-inner .ctct-form-field label,
-  .pp-accordion-inner label.ctct-form-label {
-    font-family: 'Jost', sans-serif !important;
-    font-size: 0.63rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.14em !important;
-    text-transform: uppercase !important;
-    color: var(--text-mid) !important;
-    margin-bottom: 0.35rem !important;
-    display: block !important;
-  }
-
-  .pp-accordion-inner .ctct-form-required,
-  .pp-accordion-inner span.ctct-form-required {
-    color: var(--taupe) !important;
-    font-size: 0.6em !important;
-  }
-
-  .pp-accordion-inner input[type="text"],
-  .pp-accordion-inner input[type="email"],
-  .pp-accordion-inner .ctct-form-element {
-    width: 100% !important;
-    background: #fff !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 2px !important;
-    padding: 0.6rem 0.75rem !important;
-    font-family: 'Jost', sans-serif !important;
-    font-size: 0.85rem !important;
-    font-weight: 300 !important;
-    color: var(--charcoal) !important;
-    outline: none !important;
-    box-shadow: none !important;
-    -webkit-appearance: none !important;
-    transition: border-color 0.15s ease !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .pp-accordion-inner input[type="text"]:focus,
-  .pp-accordion-inner input[type="email"]:focus,
-  .pp-accordion-inner .ctct-form-element:focus {
-    border-color: var(--text-mid) !important;
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  .pp-accordion-inner input[type="submit"],
-  .pp-accordion-inner button[type="submit"],
-  .pp-accordion-inner .ctct-form-button,
-  .pp-accordion-inner button.ctct-form-button {
-    width: 100% !important;
-    background: var(--header-bg) !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 2px !important;
-    padding: 0.75rem 1.5rem !important;
-    font-family: 'Jost', sans-serif !important;
-    font-size: 0.63rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.18em !important;
-    text-transform: uppercase !important;
-    cursor: pointer !important;
-    transition: background 0.2s ease !important;
-    box-shadow: none !important;
-    margin-top: 0.25rem !important;
-    -webkit-appearance: none !important;
-  }
-
-  .pp-accordion-inner input[type="submit"]:hover,
-  .pp-accordion-inner button[type="submit"]:hover,
-  .pp-accordion-inner .ctct-form-button:hover {
-    background: #4a0f12 !important;
-  }
-
-  .pp-accordion-inner .ctct-form-footer,
-  .pp-accordion-inner .ctct-opt-in-reason,
-  .pp-accordion-inner p.ctct-form-footer,
-  .pp-accordion-inner .ctct-disclosure {
-    font-family: 'Jost', sans-serif !important;
-    font-size: 0.62rem !important;
-    color: var(--taupe) !important;
-    line-height: 1.55 !important;
-    margin-top: 1rem !important;
-    font-weight: 300 !important;
-  }
-
-  .pp-accordion-inner .ctct-form-footer a,
-  .pp-accordion-inner .ctct-disclosure a {
-    color: var(--taupe) !important;
-    text-decoration: underline !important;
-  }
-
-  .pp-accordion-inner .ctct-form-by-line,
-  .pp-accordion-inner .ctct-form-powered-by,
-  .pp-accordion-inner a.ctct-form-footer-link {
-    opacity: 0.35 !important;
-    font-size: 0.58rem !important;
-  }
-
-  /* Success state */
-  .pp-accordion-success {
-    display: none;
-    text-align: center;
-    padding: 0.5rem 0 0.25rem;
-  }
-
-  .pp-accordion-inner--iframe {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .pp-accordion-success.is-visible { display: block; }
-
-  .pp-accordion-success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: var(--charcoal);
-    margin-bottom: 0.6rem;
-  }
-
-  .pp-accordion-success-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
-
-  .pp-accordion-form-area.is-hidden { display: none; }
 
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
@@ -863,7 +706,7 @@
   </p>
   <div class="inactive-ctas">
     <a class="inactive-cta-link" href="#archive">Explore previous features</a>
-    <button class="inactive-cta-link no-arrow" id="open-signup-modal-2">Join the list →</button>
+    <a class="inactive-cta-link no-arrow" href="#pp-signup">Join the list →</a>
   </div>
 </section>
 
@@ -896,18 +739,16 @@
 
 <div class="section-divider"><span>Stay Connected</span></div>
 
-<!-- ── CTA RAIL + ACCORDION ──
-     The rail is wrapped in .pp-signup-accordion so the drawer
-     can extend flush below the rail border. -->
+<!-- ── CTA RAIL ── -->
 <div class="pp-signup-accordion">
 
   <div class="cta-rail-inner">
 
-    <!-- Cell 1: toggles accordion drawer below -->
+    <!-- Cell 1: anchors down to signup section -->
     <div class="cta-cell">
       <span class="cta-cell-label">Get Notified</span>
       <p class="cta-cell-text">Be among the first to know when a new Petit Pulse is shared.</p>
-      <button class="cta-cell-link" id="toggle-signup">Join the List</button>
+      <a class="cta-cell-link" href="#pp-signup">Join the List</a>
     </div>
 
     <div class="cta-rail-divider"></div>
@@ -930,19 +771,15 @@
 
   </div>
 
-  <!-- Accordion drawer — signup.html loads as its own document so CC initializes cleanly -->
-  <div class="pp-accordion-drawer" id="pp-accordion-drawer">
-    <div class="pp-accordion-inner pp-accordion-inner--iframe">
-      <iframe
-        id="pp-signup-frame"
-        src="signup.html"
-        title="Join the Petit Pulse list"
-        scrolling="no"
-        frameborder="0"
-        style="width:100%;display:block;border:none;"
-        height="320"
-      ></iframe>
-    </div>
+  <!-- Signup section — sits flush below the rail, always visible -->
+  <div class="pp-signup-section-inner" id="pp-signup">
+    <span class="pp-signup-eyebrow">Petit Philippe</span>
+    <p class="pp-signup-title">Petit <em>Pulse</em></p>
+    <div class="pp-signup-rule"></div>
+    <p class="pp-signup-support">Be the first to know when a new Petit Pulse is shared.</p>
+    <!-- Begin Constant Contact Inline Form Code -->
+    <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
+    <!-- End Constant Contact Inline Form Code -->
   </div>
 
 </div>
@@ -970,44 +807,8 @@
   [200, 600, 1000, 1800, 3000].forEach(function(t) { setTimeout(reportHeight, t); });
 </script>
 
-<script>
-  (function () {
-    var toggleBtn  = document.getElementById('toggle-signup');
-    var toggleBtn2 = document.getElementById('open-signup-modal-2');
-    var drawer     = document.getElementById('pp-accordion-drawer');
-    var rail       = document.querySelector('.cta-rail-inner');
-    var frame      = document.getElementById('pp-signup-frame');
-
-    function openDrawer() {
-      drawer.classList.add('is-open');
-      if (rail) rail.style.borderRadius = '4px 4px 0 0';
-      drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      reportHeight();
-    }
-
-    function toggleDrawer() {
-      if (drawer.classList.contains('is-open')) {
-        drawer.classList.remove('is-open');
-        if (rail) rail.style.borderRadius = '';
-      } else {
-        openDrawer();
-      }
-      reportHeight();
-    }
-
-    if (toggleBtn)  toggleBtn.addEventListener('click', toggleDrawer);
-    if (toggleBtn2) toggleBtn2.addEventListener('click', openDrawer);
-
-    // Listen for height updates from signup.html iframe
-    window.addEventListener('message', function (e) {
-      if (e.data && e.data.type === 'pp-signup-height' && frame) {
-        frame.style.height = (e.data.height + 16) + 'px';
-        reportHeight();
-      }
-    });
-
-  })();
-</script>
+</body>
+</html>
 
 
 </body>
