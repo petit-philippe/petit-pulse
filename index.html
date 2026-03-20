@@ -444,7 +444,7 @@
   }
 
   /* ── CTA RAIL ── */
-  .cta-rail {
+  .pp-signup-accordion {
     max-width: 680px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -554,115 +554,78 @@
 
   .footer-note a:hover { text-decoration: underline; }
 
-  /* ── SIGNUP MODAL ── */
-  .pp-modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(30, 18, 14, 0.62);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+  /* ── SIGNUP ACCORDION ── */
+  .pp-accordion-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
   }
 
-  .pp-modal-overlay.is-open {
-    display: flex;
-    animation: overlayIn 0.25s ease both;
+  .pp-accordion-drawer.is-open ~ * { }
+
+  /* When drawer is open, square off bottom corners of the rail above it */
+  .pp-accordion-drawer.is-open {
+    max-height: 800px;
   }
 
-  @keyframes overlayIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  /* Rail loses bottom radius when drawer is open */
+  .pp-accordion-drawer.is-open .cta-rail-inner,
+  .cta-rail-inner.drawer-open {
+    border-radius: 4px 4px 0 0;
   }
 
-  .pp-modal {
+  .pp-accordion-drawer.is-open ~ .cta-rail-inner {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .pp-accordion-inner {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
     background: #fff;
-    border-radius: 3px;
-    width: 100%;
-    max-width: 460px;
-    padding: 2.75rem 2.5rem 2.25rem;
-    position: relative;
-    animation: modalIn 0.28s ease both;
-  }
-
-  @keyframes modalIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+    padding: 2rem 2.5rem 1.75rem;
   }
 
   @media (max-width: 520px) {
-    .pp-modal {
-      padding: 2.25rem 1.75rem 2rem;
-    }
+    .pp-accordion-inner { padding: 1.75rem 1.5rem 1.5rem; }
   }
 
-  .pp-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--taupe);
-    font-size: 1.1rem;
-    line-height: 1;
-    padding: 0.25rem;
-    transition: color 0.15s ease;
+  .pp-accordion-intro {
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
 
-  .pp-modal-close:hover { color: var(--charcoal); }
-
-  .pp-modal-eyebrow {
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    display: block;
-    margin-bottom: 0.6rem;
-  }
-
-  .pp-modal-title {
+  .pp-accordion-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 5vw, 2rem);
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
     font-weight: 300;
     color: var(--charcoal);
     line-height: 1.1;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
   }
 
-  .pp-modal-title em {
-    font-style: italic;
-    color: var(--text-mid);
-  }
+  .pp-accordion-title em { font-style: italic; color: var(--text-mid); }
 
-  .pp-modal-support {
+  .pp-accordion-support {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.98rem;
-    font-weight: 300;
+    font-size: 0.93rem;
     font-style: italic;
+    font-weight: 300;
     color: var(--text-mid);
     line-height: 1.6;
-    margin-bottom: 1.75rem;
   }
 
-  .pp-modal-rule {
-    width: 28px;
+  .pp-accordion-rule {
+    width: 24px;
     height: 1px;
     background: var(--border);
-    margin-bottom: 1.75rem;
+    margin: 1rem auto 1.5rem;
   }
 
-  /* ── CC FORM OVERRIDES ──
-     Scoped entirely to .pp-modal so no global styles are affected.
-     Targets rendered CC DOM — adjust specificity if CC updates its markup.
-  ── */
-  .pp-modal .ctct-inline-form,
-  .pp-modal .ctct-form-defaults,
-  .pp-modal .ctct-form-wrapper {
+  /* ── CC FORM OVERRIDES — scoped to .pp-accordion-inner ── */
+  .pp-accordion-inner .ctct-inline-form,
+  .pp-accordion-inner .ctct-form-defaults,
+  .pp-accordion-inner .ctct-form-wrapper {
     background: transparent !important;
     padding: 0 !important;
     border: none !important;
@@ -670,16 +633,14 @@
     font-family: 'Jost', sans-serif !important;
   }
 
-  /* Hide CC header/title — we have our own */
-  .pp-modal .ctct-form-header,
-  .pp-modal .ctct-form-logo,
-  .pp-modal h2.ctct-form-title {
+  .pp-accordion-inner .ctct-form-header,
+  .pp-accordion-inner .ctct-form-logo,
+  .pp-accordion-inner h2.ctct-form-title {
     display: none !important;
   }
 
-  /* Field labels */
-  .pp-modal .ctct-form-field label,
-  .pp-modal label.ctct-form-label {
+  .pp-accordion-inner .ctct-form-field label,
+  .pp-accordion-inner label.ctct-form-label {
     font-family: 'Jost', sans-serif !important;
     font-size: 0.63rem !important;
     font-weight: 500 !important;
@@ -690,17 +651,15 @@
     display: block !important;
   }
 
-  /* Required asterisk — de-emphasize */
-  .pp-modal .ctct-form-required,
-  .pp-modal span.ctct-form-required {
+  .pp-accordion-inner .ctct-form-required,
+  .pp-accordion-inner span.ctct-form-required {
     color: var(--taupe) !important;
     font-size: 0.6em !important;
   }
 
-  /* Input fields */
-  .pp-modal input[type="text"],
-  .pp-modal input[type="email"],
-  .pp-modal .ctct-form-element {
+  .pp-accordion-inner input[type="text"],
+  .pp-accordion-inner input[type="email"],
+  .pp-accordion-inner .ctct-form-element {
     width: 100% !important;
     background: #fff !important;
     border: 1px solid var(--border) !important;
@@ -717,19 +676,18 @@
     margin-bottom: 1rem !important;
   }
 
-  .pp-modal input[type="text"]:focus,
-  .pp-modal input[type="email"]:focus,
-  .pp-modal .ctct-form-element:focus {
+  .pp-accordion-inner input[type="text"]:focus,
+  .pp-accordion-inner input[type="email"]:focus,
+  .pp-accordion-inner .ctct-form-element:focus {
     border-color: var(--text-mid) !important;
     box-shadow: none !important;
     outline: none !important;
   }
 
-  /* Submit button */
-  .pp-modal input[type="submit"],
-  .pp-modal button[type="submit"],
-  .pp-modal .ctct-form-button,
-  .pp-modal button.ctct-form-button {
+  .pp-accordion-inner input[type="submit"],
+  .pp-accordion-inner button[type="submit"],
+  .pp-accordion-inner .ctct-form-button,
+  .pp-accordion-inner button.ctct-form-button {
     width: 100% !important;
     background: var(--header-bg) !important;
     color: #fff !important;
@@ -748,17 +706,16 @@
     -webkit-appearance: none !important;
   }
 
-  .pp-modal input[type="submit"]:hover,
-  .pp-modal button[type="submit"]:hover,
-  .pp-modal .ctct-form-button:hover {
+  .pp-accordion-inner input[type="submit"]:hover,
+  .pp-accordion-inner button[type="submit"]:hover,
+  .pp-accordion-inner .ctct-form-button:hover {
     background: #4a0f12 !important;
   }
 
-  /* Legal / disclosure copy */
-  .pp-modal .ctct-form-footer,
-  .pp-modal .ctct-opt-in-reason,
-  .pp-modal p.ctct-form-footer,
-  .pp-modal .ctct-disclosure {
+  .pp-accordion-inner .ctct-form-footer,
+  .pp-accordion-inner .ctct-opt-in-reason,
+  .pp-accordion-inner p.ctct-form-footer,
+  .pp-accordion-inner .ctct-disclosure {
     font-family: 'Jost', sans-serif !important;
     font-size: 0.62rem !important;
     color: var(--taupe) !important;
@@ -767,62 +724,46 @@
     font-weight: 300 !important;
   }
 
-  .pp-modal .ctct-form-footer a,
-  .pp-modal .ctct-disclosure a {
+  .pp-accordion-inner .ctct-form-footer a,
+  .pp-accordion-inner .ctct-disclosure a {
     color: var(--taupe) !important;
     text-decoration: underline !important;
   }
 
-  /* CC branding badge — minimize */
-  .pp-modal .ctct-form-by-line,
-  .pp-modal .ctct-form-powered-by,
-  .pp-modal a.ctct-form-footer-link {
+  .pp-accordion-inner .ctct-form-by-line,
+  .pp-accordion-inner .ctct-form-powered-by,
+  .pp-accordion-inner a.ctct-form-footer-link {
     opacity: 0.35 !important;
     font-size: 0.58rem !important;
   }
 
   /* Success state */
-  .pp-modal .ctct-form-success,
-  .pp-modal .ctct-form-success-message {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    text-align: center !important;
-    font-family: 'Cormorant Garamond', serif !important;
-    font-size: 1.05rem !important;
-    font-weight: 300 !important;
-    color: var(--text-mid) !important;
-    line-height: 1.75 !important;
-  }
-
-  /* Custom success state — shown via JS after CC success fires */
-  .pp-modal-success {
+  .pp-accordion-success {
     display: none;
     text-align: center;
-    padding: 1rem 0 0.5rem;
+    padding: 0.5rem 0 0.25rem;
   }
 
-  .pp-modal-success.is-visible { display: block; }
+  .pp-accordion-success.is-visible { display: block; }
 
-  .pp-modal-success-title {
+  .pp-accordion-success-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 300;
     color: var(--charcoal);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
 
-  .pp-modal-success-body {
+  .pp-accordion-success-body {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 300;
     font-style: italic;
     color: var(--text-mid);
     line-height: 1.75;
   }
 
-  .pp-modal-form-area { display: block; }
-  .pp-modal-form-area.is-hidden { display: none; }
+  .pp-accordion-form-area.is-hidden { display: none; }
 
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
@@ -868,8 +809,7 @@
 
 <!-- ── MICRO-EXPLAINER ── -->
 <section class="micro-explainer">
-  <p>Petit Pulse is a limited-time feature.<br>
-  We share a Petit Pulse when something feels worth bringing forward,<br>and it remains available for a short window.</p>
+  <p>Petit Pulse is a limited-time feature. We share a Petit Pulse when something feels worth bringing forward, and it remains available for a short window.</p>
 </section>
 
 <div class="section-divider"><span>How It Works</span></div>
@@ -951,15 +891,18 @@
 
 <div class="section-divider"><span>Stay Connected</span></div>
 
-<!-- ── CTA RAIL ── -->
-<div class="cta-rail">
+<!-- ── CTA RAIL + ACCORDION ──
+     The rail is wrapped in .pp-signup-accordion so the drawer
+     can extend flush below the rail border. -->
+<div class="pp-signup-accordion">
+
   <div class="cta-rail-inner">
 
-    <!-- Cell 1: Email signup — triggers modal -->
+    <!-- Cell 1: toggles accordion drawer below -->
     <div class="cta-cell">
       <span class="cta-cell-label">Get Notified</span>
       <p class="cta-cell-text">Be among the first to know when a new Petit Pulse is shared.</p>
-      <button class="cta-cell-link" id="open-signup-modal">Join the List</button>
+      <button class="cta-cell-link" id="toggle-signup">Join the List</button>
     </div>
 
     <div class="cta-rail-divider"></div>
@@ -981,6 +924,34 @@
     </div>
 
   </div>
+
+  <!-- Accordion drawer — CC form lives here at full DOM visibility from page load.
+       max-height:0 + overflow:hidden hides it visually; CC initializes it normally. -->
+  <div class="pp-accordion-drawer" id="pp-accordion-drawer">
+    <div class="pp-accordion-inner">
+
+      <div class="pp-accordion-intro">
+        <p class="pp-accordion-title">Petit <em>Pulse</em></p>
+        <div class="pp-accordion-rule"></div>
+        <p class="pp-accordion-support">Be the first to know when a new Petit Pulse is shared.</p>
+      </div>
+
+      <!-- Form area -->
+      <div class="pp-accordion-form-area" id="pp-accordion-form-area">
+        <!-- Begin Constant Contact Inline Form Code -->
+        <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
+        <!-- End Constant Contact Inline Form Code -->
+      </div>
+
+      <!-- Custom success state -->
+      <div class="pp-accordion-success" id="pp-accordion-success">
+        <p class="pp-accordion-success-title">Thank you.</p>
+        <p class="pp-accordion-success-body">You'll hear from us when something worth sharing comes across our counter.</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
 <!-- ── FOOTER ── -->
@@ -988,35 +959,6 @@
   <p>
     Questions? <a href="mailto:info@petitphilippe.com">Reach us by email</a> or call <a href="tel:7043329910">(704) 332-9910</a>.
   </p>
-</div>
-
-<!-- ── SIGNUP MODAL ── -->
-<div class="pp-modal-overlay" id="pp-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pp-modal-heading">
-
-  <div class="pp-modal" id="pp-modal">
-
-    <button class="pp-modal-close" id="pp-modal-close" aria-label="Close">&#215;</button>
-
-    <span class="pp-modal-eyebrow">Petit Philippe</span>
-    <h2 class="pp-modal-title" id="pp-modal-heading">Petit <em>Pulse</em></h2>
-    <div class="pp-modal-rule"></div>
-    <p class="pp-modal-support">Be the first to know when a new Petit Pulse is shared.</p>
-
-    <!-- Form area — hidden after successful submission -->
-    <div class="pp-modal-form-area" id="pp-modal-form-area">
-      <!-- Begin Constant Contact Inline Form Code -->
-      <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
-      <!-- End Constant Contact Inline Form Code -->
-    </div>
-
-    <!-- Custom success state — revealed by JS after CC submission -->
-    <div class="pp-modal-success" id="pp-modal-success">
-      <p class="pp-modal-success-title">Thank you.</p>
-      <p class="pp-modal-success-body">You'll hear from us when something<br>worth sharing comes across our counter.</p>
-    </div>
-
-  </div>
-
 </div>
 
 <!-- Height reporter — do not edit -->
@@ -1037,86 +979,59 @@
 
 <script>
   (function () {
-    var overlay   = document.getElementById('pp-modal-overlay');
-    var openBtn   = document.getElementById('open-signup-modal');
-    var openBtn2  = document.getElementById('open-signup-modal-2');
-    var closeBtn  = document.getElementById('pp-modal-close');
-    var formArea  = document.getElementById('pp-modal-form-area');
-    var success   = document.getElementById('pp-modal-success');
-    var ccInited  = false;
+    var toggleBtn  = document.getElementById('toggle-signup');
+    var drawer     = document.getElementById('pp-accordion-drawer');
+    var formArea   = document.getElementById('pp-accordion-form-area');
+    var success    = document.getElementById('pp-accordion-success');
 
-    function openModal() {
-      overlay.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
+    // Also wire the "Join the list" button in the inactive pulse module
+    var toggleBtn2 = document.getElementById('open-signup-modal-2');
 
-      // CC widget only scans for .ctct-inline-form elements at script load time,
-      // before the modal is visible. On first open, force a re-scan by briefly
-      // making the form visible and calling the widget's own init if available,
-      // or falling back to a clone-swap trick to trigger a fresh DOM parse.
-      if (!ccInited) {
-        ccInited = true;
-        setTimeout(function () {
-          var placeholder = formArea.querySelector('.ctct-inline-form');
-          if (placeholder) {
-            // Clone-swap forces CC's MutationObserver (if any) to re-process
-            var clone = placeholder.cloneNode(true);
-            placeholder.parentNode.replaceChild(clone, placeholder);
-          }
-          // If CC exposes a public init method, call it
-          if (window.ConstantContact && typeof window.ConstantContact.init === 'function') {
-            window.ConstantContact.init();
-          }
-          // Re-attach observer to new node
-          attachObserver();
-        }, 80);
-      }
+    var rail = document.querySelector('.cta-rail-inner');
+
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      if (rail) rail.style.borderRadius = '4px 4px 0 0';
+      drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      reportHeight();
     }
 
-    function closeModal() {
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-      // Return focus to whichever button opened it
-      if (document.activeElement === closeBtn) {
-        if (openBtn) openBtn.focus();
+    function toggleDrawer() {
+      if (drawer.classList.contains('is-open')) {
+        drawer.classList.remove('is-open');
+        if (rail) rail.style.borderRadius = '';
+      } else {
+        openDrawer();
       }
+      reportHeight();
     }
 
-    function attachObserver() {
-      var target = formArea;
-      if (!target) return;
-      var observer = new MutationObserver(function () {
-        var ccSuccess = target.querySelector('.ctct-form-success');
-        if (ccSuccess) {
-          formArea.classList.add('is-hidden');
-          success.classList.add('is-visible');
-          observer.disconnect();
-        }
+    if (toggleBtn)  toggleBtn.addEventListener('click', toggleDrawer);
+    if (toggleBtn2) toggleBtn2.addEventListener('click', openDrawer);
+
+    // Watch for CC success and swap in custom confirmation
+    var observer = new MutationObserver(function () {
+      var ccSuccess = formArea && formArea.querySelector('.ctct-form-success');
+      if (ccSuccess) {
+        formArea.classList.add('is-hidden');
+        success.classList.add('is-visible');
+        reportHeight();
+        observer.disconnect();
+      }
+    });
+
+    if (formArea) {
+      observer.observe(formArea, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
       });
-      observer.observe(target, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     }
-
-    // Initial observer attachment (catches cases where CC loads after DOM ready)
-    attachObserver();
-
-    if (openBtn)  openBtn.addEventListener('click', openModal);
-    if (openBtn2) openBtn2.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    // Close on overlay click (outside modal card)
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeModal();
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
-        closeModal();
-      }
-    });
 
   })();
 </script>
+
 
 </body>
 </html>
