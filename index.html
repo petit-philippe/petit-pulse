@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Petit Pulse — Brittan Vineyards</title>
+<title>Petit Pulse — Petit Philippe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -79,14 +81,8 @@
   }
 
   @media (max-width: 600px) {
-    .pp-header {
-      justify-content: center;
-      min-height: 300px;
-    }
-    .pp-header-content {
-      width: 100%;
-      padding: 2.25rem 1.5rem;
-    }
+    .pp-header { justify-content: center; min-height: 300px; }
+    .pp-header-content { width: 100%; padding: 2.25rem 1.5rem; }
     .pp-header-overlay {
       background: linear-gradient(
         to bottom,
@@ -129,6 +125,16 @@
     color: rgba(255,255,255,0.7);
   }
 
+  .pulse-subhead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.06em;
+    margin-top: 0.5rem;
+  }
+
   .pulse-rule {
     width: 32px;
     height: 1px;
@@ -159,25 +165,20 @@
     font-weight: 400;
   }
 
-  /* ── WINDOW STRIP ── */
-  .window-strip {
-    background: #f5f0eb;
-    border-bottom: 1px solid var(--border);
-    padding: 0.7rem 1.5rem;
+  /* ── MICRO-EXPLAINER ── */
+  .micro-explainer {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 0;
     text-align: center;
   }
 
-  .window-strip p {
-    font-size: 0.67rem;
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+  .micro-explainer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 3vw, 1.18rem);
+    font-weight: 300;
     color: var(--text-mid);
-  }
-
-  .window-strip p strong {
-    color: var(--pp-red);
-    font-weight: 600;
+    line-height: 1.85;
   }
 
   /* ── DIVIDER ── */
@@ -206,124 +207,150 @@
     white-space: nowrap;
   }
 
-  /* ── PROGRAM DEFINITION ── */
-  .program-definition {
-    max-width: 560px;
+  /* ── HOW IT WORKS ── */
+  .how-it-works {
+    max-width: 640px;
     margin: 0 auto;
-    padding: 2.75rem 1.5rem 0;
-    text-align: center;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .program-definition p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.05rem, 3vw, 1.2rem);
-    font-weight: 300;
-    color: var(--text-mid);
-    line-height: 1.8;
+  .how-step {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: start;
+    gap: 0;
   }
 
-  /* ── PRODUCER EDITORIAL ── */
-  .producer-section {
-    max-width: 600px;
+  /* On mobile, stack vertically */
+  @media (max-width: 560px) {
+    .how-it-works {
+      gap: 1.75rem;
+    }
+    .how-step {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+    .how-step-divider { display: none; }
+  }
+
+  /* Horizontal layout for 3 steps */
+  .how-it-works-row {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    gap: 0;
+    max-width: 640px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
-  .producer-label {
-    font-size: 0.62rem;
+  @media (max-width: 560px) {
+    .how-it-works-row {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .how-col-divider { display: none; }
+  }
+
+  .how-col {
+    padding: 0 1.75rem;
+    text-align: center;
+  }
+
+  .how-col:first-child { padding-left: 0; }
+  .how-col:last-child { padding-right: 0; }
+
+  @media (max-width: 560px) {
+    .how-col { padding: 0; text-align: left; }
+  }
+
+  .how-col-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  .how-col-label {
+    font-size: 0.58rem;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--pp-red);
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
+    display: block;
   }
 
-  .producer-headline {
+  .how-col-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    font-size: 0.98rem;
     font-weight: 300;
-    line-height: 1.2;
-    color: var(--charcoal);
-    margin-bottom: 1.4rem;
-  }
-
-  .producer-headline em { font-style: italic; }
-
-  .producer-body {
-    font-size: 0.88rem;
     color: var(--text-mid);
-    line-height: 1.85;
-  }
-
-  .producer-body p + p { margin-top: 1rem; }
-
-  .producer-signal {
-    margin-top: 1.75rem;
-    padding: 1.25rem 1.5rem;
-    border-left: 2px solid var(--pp-red);
-    background: rgba(192, 48, 46, 0.04);
-    border-radius: 0 4px 4px 0;
-  }
-
-  .producer-signal p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    color: var(--charcoal);
     line-height: 1.65;
   }
 
-  /* ── SHOPPING GUIDE ── */
-  .shopping-guide {
+  /* ── CURRENT PULSE MODULE — INACTIVE STATE ── */
+  .pulse-module-inactive {
     max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .pulse-module-inactive h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .pulse-module-inactive p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .inactive-ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .inactive-cta-link {
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pp-red);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .inactive-cta-link::after { content: '↓'; font-size: 0.8rem; }
+  .inactive-cta-link.no-arrow::after { content: ''; }
+
+  .inactive-cta-link:hover { text-decoration: underline; }
+
+  /* ── ARCHIVE SECTION ── */
+  .archive-section {
+    max-width: 680px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
-  .shopping-guide p {
-    font-size: 0.88rem;
-    color: var(--text-mid);
-    line-height: 1.85;
-  }
-
-  .shopping-guide p + p { margin-top: 1rem; }
-
-  .shopping-guide .guide-closing {
-    display: block;
-    margin-top: 1.25rem;
-    font-size: 0.63rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--taupe);
-  }
-
-  /* ── WINES SECTION ── */
-  .wines-section {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-
-  /* ── GROUP LABEL ── */
-  .wine-group-label {
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    text-align: center;
-    padding: 0.5rem 0 1.25rem;
-  }
-
-  .wine-group-label + .wines-grid { margin-bottom: 0; }
-
-  .wines-grid + .wine-group-label { padding-top: 2.5rem; }
-
-  /* ── WINES GRID ── */
-  .wines-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .archive-cards {
+    display: flex;
+    flex-direction: column;
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -331,141 +358,165 @@
     overflow: hidden;
   }
 
+  .archive-card {
+    background: var(--warm-white);
+    padding: 1.5rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem 2rem;
+    align-items: start;
+  }
+
   @media (max-width: 480px) {
-    .wines-grid { grid-template-columns: 1fr; }
+    .archive-card {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
   }
 
-  .wines-grid.grid-single {
-    grid-template-columns: 1fr;
-    max-width: 380px;
-    margin: 0 auto;
-  }
+  .archive-card-main {}
 
-  .wine-card {
-    background: #fff;
-    padding: 0 0 1.4rem 0;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s ease;
-  }
-
-  .wine-card:hover { background: var(--taupe-light); }
-
-  .wine-img-wrap {
-    width: 100%;
-    background: #f5f2ee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 0 1.1rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .wine-img-wrap img {
-    height: 140px;
-    width: auto;
-    object-fit: contain;
+  .archive-producer {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pp-red);
+    margin-bottom: 0.45rem;
     display: block;
-    transition: transform 0.3s ease;
   }
 
-  @media (max-width: 420px) {
-    .wine-img-wrap img { height: 110px; }
+  .archive-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.25;
+    margin-bottom: 0.65rem;
   }
 
-  .wine-card:hover .wine-img-wrap img { transform: translateY(-4px); }
-
-  .wine-card-body {
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    flex: 1;
+  .archive-overview {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
   }
 
-  .wine-type {
+  .archive-scope-label {
     font-size: 0.56rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pp-red);
+    margin-right: 0.5em;
+  }
+
+  .archive-scope {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-top: 0.35rem;
+    font-style: italic;
+  }
+
+  .archive-card-meta {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .archive-card-meta { text-align: left; }
+  }
+
+  .archive-timing {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--taupe);
   }
 
-  .wine-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.25;
-    color: var(--charcoal);
+  /* ── CTA RAIL ── */
+  .cta-rail {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
-  .wine-descriptor {
-    font-size: 0.75rem;
+  .cta-rail-inner {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--border);
+  }
+
+  @media (max-width: 560px) {
+    .cta-rail-inner {
+      grid-template-columns: 1fr;
+      background: transparent;
+      border: none;
+      gap: 1px;
+    }
+    .cta-rail-divider { display: none; }
+  }
+
+  .cta-rail-divider {
+    width: 1px;
+    background: var(--border);
+  }
+
+  .cta-cell {
+    background: var(--warm-white);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 560px) {
+    .cta-cell {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+  }
+
+  .cta-cell-label {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    display: block;
+  }
+
+  .cta-cell-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
     color: var(--text-mid);
     line-height: 1.55;
-    margin-top: 0.1rem;
-    flex: 1;
   }
 
-  .wine-price-row {
-    display: flex;
-    align-items: baseline;
-    margin-top: 0.85rem;
-  }
-
-  .wine-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--charcoal);
-  }
-
-  .wine-cta {
+  .cta-cell-link {
     font-size: 0.63rem;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--pp-red);
-    margin-top: 0.55rem;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    margin-top: 0.25rem;
   }
 
-  .wine-cta::after {
-    content: '→';
-    font-size: 0.78rem;
-  }
+  .cta-cell-link::after { content: '→'; font-size: 0.78rem; }
+  .cta-cell-link:hover { text-decoration: underline; }
 
-  /* ── CLOSING NOTE ── */
-  .closing-note {
-    max-width: 500px;
-    margin: 3rem auto 0;
-    padding: 0 1.5rem;
-    text-align: center;
-  }
-
-  .closing-note p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--text-mid);
-    line-height: 1.75;
-  }
-
-  .closing-note .closing-line {
-    display: block;
-    margin-top: 1rem;
-    font-family: 'Jost', sans-serif;
-    font-style: normal;
-    font-size: 0.63rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--taupe);
-  }
 
   /* ── FOOTER ── */
   .footer-note {
@@ -491,12 +542,12 @@
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
     .pp-header { animation: fadeUp 0.5s ease both; }
-    .window-strip { animation: fadeUp 0.5s ease 0.05s both; }
-    .producer-section { animation: fadeUp 0.6s ease 0.1s both; }
-    .shopping-guide { animation: fadeUp 0.6s ease 0.15s both; }
-    .wines-section { animation: fadeUp 0.6s ease 0.25s both; }
-    .closing-note { animation: fadeUp 0.6s ease 0.35s both; }
-    .footer-note { animation: fadeUp 0.6s ease 0.4s both; }
+    .micro-explainer { animation: fadeUp 0.55s ease 0.05s both; }
+    .how-it-works-row { animation: fadeUp 0.6s ease 0.1s both; }
+    .pulse-module-inactive { animation: fadeUp 0.6s ease 0.15s both; }
+    .archive-section { animation: fadeUp 0.6s ease 0.2s both; }
+    .cta-rail { animation: fadeUp 0.6s ease 0.25s both; }
+    .footer-note { animation: fadeUp 0.6s ease 0.3s both; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -507,7 +558,7 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ── HEADER ── -->
 <header class="pp-header">
   <div class="pp-header-photo"></div>
   <div class="pp-header-overlay"></div>
@@ -515,10 +566,11 @@
     <img class="pulse-icon" src="Petit_Pulse_Icon_Logo.png" alt="Petit Pulse">
     <p class="pulse-eyebrow">Petit Philippe Presents</p>
     <h1 class="pulse-title">Petit <em>Pulse</em></h1>
+    <p class="pulse-subhead">Not a sale. A window.</p>
     <div class="pulse-rule"></div>
     <div class="pulse-manifesto">
       <p>
-        Every so often, something comes across our table<br>
+        Every so often, something comes across our counter<br>
         that's worth acting on.<br><br>
         Not because it's rare.<br>
         Not because it's expensive.<br>
@@ -529,198 +581,131 @@
   </div>
 </header>
 
-<!-- WINDOW STRIP -->
-<div class="window-strip">
-  <p>This window closes <strong>Friday, March 20 at 3 PM</strong> &nbsp;·&nbsp; While allocation lasts</p>
-</div>
-
-<!-- PROGRAM DEFINITION -->
-<section class="program-definition">
-  <p>A small set of wines, offered for a limited time.<br>No buildup, no repeat schedule.<br>Just a window to bring something home while it's available.</p>
+<!-- ── MICRO-EXPLAINER ── -->
+<section class="micro-explainer">
+  <p>Petit Pulse is a limited-time feature.<br>
+  We share a Petit Pulse when something feels worth bringing forward,<br>and it remains available for a short window.</p>
 </section>
+
+<div class="section-divider"><span>How It Works</span></div>
+
+<!-- ── HOW IT WORKS ── -->
+<div class="how-it-works-row">
+
+  <div class="how-col">
+    <span class="how-col-label">When it's shared</span>
+    <p class="how-col-text">A focused selection is introduced — a producer, a moment, something worth attention.</p>
+  </div>
+
+  <div class="how-col-divider"></div>
+
+  <div class="how-col">
+    <span class="how-col-label">A short window</span>
+    <p class="how-col-text">The wines are available for a limited time. No buildup, no repeat schedule.</p>
+  </div>
+
+  <div class="how-col-divider"></div>
+
+  <div class="how-col">
+    <span class="how-col-label">Then it closes</span>
+    <p class="how-col-text">Once the window ends, we move on. Previous features move into the archive below.</p>
+  </div>
+
+</div>
 
 <div class="section-divider"><span>Current Pulse</span></div>
 
-<!-- PRODUCER EDITORIAL -->
-<section class="producer-section">
-  <p class="producer-label">Brittan Vineyards &nbsp;·&nbsp; McMinnville AVA, Oregon</p>
-  <h2 class="producer-headline">An estate we know well.<br><em>Wines that reward the people who find them.</em></h2>
-  <div class="producer-body">
-    <p>
-      Robert Brittan spent years as head winemaker at Stag's Leap Wine Cellars before heading north to build something of his own in Oregon's McMinnville AVA. He planted his estate from scratch. The wines reflect exactly that: deliberate, site-driven, built to age.
-    </p>
-    <p>
-      We hosted Robert here in 2023, and his wines have become a favorite among customers who've found them. Nine bottles are available in this pulse — sparkling through Pinot Noir to a Syrah that tends to surprise people.
-    </p>
-  </div>
-  <div class="producer-signal">
-    <p>These are wines that overdeliver and tend to disappear once people discover them. Sometimes the timing aligns in a way that makes it easier to say yes.</p>
+<!-- ══════════════════════════════════════════════════════════════
+  CURRENT PULSE MODULE
+  ──────────────────────────────────────────────────────────────
+  STATE A (ACTIVE): Delete the inactive block below and replace
+  with the full offer content from the live-offer template.
+
+  STATE B (INACTIVE): Keep this block as-is.
+══════════════════════════════════════════════════════════════ -->
+
+<!-- STATE B — INACTIVE -->
+<section class="pulse-module-inactive">
+  <h2>Nothing is currently being featured.</h2>
+  <p>
+    We share a Petit Pulse when something crosses our counter that feels timely and worth bringing forward.
+    Until then, previous features are archived below and can give you a sense of what to expect.
+  </p>
+  <div class="inactive-ctas">
+    <a class="inactive-cta-link" href="#archive">Explore previous features</a>
+    <a class="inactive-cta-link no-arrow" href="https://www.petitphilippe.com/shop-region/">Browse the shop →</a>
   </div>
 </section>
 
-<div class="section-divider"><span>How to Shop This Pulse</span></div>
+<div class="section-divider"><span>Previous Petit Pulse Features</span></div>
 
-<!-- SHOPPING GUIDE -->
-<section class="shopping-guide">
-  <p>Not a sale. A window. A small set of wines we know well, offered for a limited time.</p>
-  <p>Start with the estate wines to get a feel for the producer, or move into the single vineyard bottlings to see how the site shifts from block to block.</p>
-  <p>Most of these are worth trying side by side — especially across vintages or vineyard blocks.</p>
-  <span class="guide-closing">Available while it's here.</span>
+<!-- ── ARCHIVE ──
+  Add new cards at the top as offers close. Cap at 6 entries.
+  Remove the oldest card when a 7th is added.
+-->
+<section class="archive-section" id="archive">
+  <div class="archive-cards">
+
+    <!-- ARCHIVE CARD: Brittan Vineyards — March 2026 -->
+    <div class="archive-card">
+      <div class="archive-card-main">
+        <span class="archive-producer">Brittan Vineyards &nbsp;·&nbsp; McMinnville AVA, Oregon</span>
+        <p class="archive-headline">An estate built from scratch in Oregon's McMinnville AVA, focused on site-driven expression.</p>
+        <p class="archive-overview">A McMinnville producer focused on site-driven Pinot Noir and restrained, expressive wines, founded by Robert Brittan following years as head winemaker at Stag's Leap Wine Cellars.</p>
+        <p class="archive-scope"><span class="archive-scope-label">Offering</span> A focused selection spanning estate wines and single-vineyard expressions across Pinot Noir, Chardonnay, Sparkling, and Syrah — including the Basalt Block, Cygnus Block, Gestalt Block, and Heritage Block designates.</p>
+      </div>
+      <div class="archive-card-meta">
+        <span class="archive-timing">Closed March 20, 2026</span>
+      </div>
+    </div>
+
+    <!-- ADD future archive cards above this comment as offers close -->
+
+  </div>
 </section>
 
-<div class="section-divider"><span>The Collection</span></div>
+<div class="section-divider"><span>Stay Connected</span></div>
 
-<!-- WINES -->
-<section class="wines-section">
+<!-- ── CTA RAIL ── -->
+<div class="cta-rail">
+  <div class="cta-rail-inner">
 
-  <p class="wine-group-label">Estate Wines</p>
-  <div class="wines-grid">
+    <!-- Cell 1: Email signup -->
+    <div class="cta-cell">
+      <span class="cta-cell-label">Get Notified</span>
+      <p class="cta-cell-text">Be among the first to know when a new Petit Pulse is shared.</p>
+      <a class="cta-cell-link" href="https://lp.constantcontactpages.com/su/petit-pulse" target="_top">Join the List</a>
+    </div>
 
-    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-sparkling-brut.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/73936677/500x700x1/brittan-vineyards-brittan-vineyards-sparkling-brut.jpg" alt="Brittan Vineyards NV Estate Brut">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Sparkling</span>
-        <span class="wine-name">NV Estate Brut</span>
-        <span class="wine-descriptor">A rare Oregon sparkling from Brittan's estate — fine-bubbled, food-friendly, with cool-climate brightness.</span>
-        <div class="wine-price-row"><span class="wine-price">$73</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
+    <div class="cta-rail-divider"></div>
 
-    <a class="wine-card" href="https://www.petitphilippe.com/copy-of-brittan-vineyards-estate-chardonnay-2021.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001702/500x700x1/brittan-vineyards-brittan-vineyards-estate-chardon.jpg" alt="Brittan Vineyards Estate Chardonnay 2023">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">White &nbsp;·&nbsp; 2023</span>
-        <span class="wine-name">Estate Chardonnay</span>
-        <span class="wine-descriptor">Restrained, mineral-driven Oregon Chardonnay. The 2023 vintage brings freshness and structure at an accessible price point.</span>
-        <div class="wine-price-row"><span class="wine-price">$45</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
+    <!-- Cell 2: Petit Picks -->
+    <div class="cta-cell">
+      <span class="cta-cell-label">Browse</span>
+      <p class="cta-cell-text">Our ongoing curated selections, available anytime.</p>
+      <a class="cta-cell-link" href="https://www.petitphilippe.com/petit-picks/" target="_top">Explore Petit Picks</a>
+    </div>
 
-    <a class="wine-card" href="https://www.petitphilippe.com/copy-of-brittan-vineyards-mcminnville-estate-pinot.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001637/500x700x1/brittan-vineyards-brittan-vineyards-mcminnville-es.jpg" alt="Brittan Vineyards McMinnville Estate Pinot Noir 2023">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2023</span>
-        <span class="wine-name">McMinnville Estate Pinot Noir</span>
-        <span class="wine-descriptor">The newest vintage, still coming into its own. Bright and lifted, with the characteristic cool-climate profile of the McMinnville AVA.</span>
-        <div class="wine-price-row"><span class="wine-price">$45</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
+    <div class="cta-rail-divider"></div>
 
-    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-mcminnville-estate-pinot-noir-20.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001638/500x700x1/brittan-vineyards-brittan-vineyards-mcminnville-es.jpg" alt="Brittan Vineyards McMinnville Estate Pinot Noir 2022">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2022</span>
-        <span class="wine-name">McMinnville Estate Pinot Noir</span>
-        <span class="wine-descriptor">The estate entry point — and a genuinely strong bottle. Dark fruit, earthy depth, and the precision that defines Brittan's style.</span>
-        <div class="wine-price-row"><span class="wine-price">$45</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
+    <!-- Cell 3: Instagram -->
+    <div class="cta-cell">
+      <span class="cta-cell-label">Follow Along</span>
+      <p class="cta-cell-text">Pulses are shared to our list and announced on Instagram first.</p>
+      <a class="cta-cell-link" href="https://www.instagram.com/petitphilippe/" target="_top">@petitphilippe</a>
+    </div>
 
   </div>
-
-  <p class="wine-group-label">Single Vineyard Pinot Noir</p>
-  <div class="wines-grid">
-
-    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-basalt-block-mcminnville-pinot-n.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001648/500x700x1/brittan-vineyards-brittan-vineyards-basalt-block-m.jpg" alt="Brittan Vineyards Basalt Block Pinot Noir 2022">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2022</span>
-        <span class="wine-name">'Basalt Block' McMinnville Pinot Noir</span>
-        <span class="wine-descriptor">Named for the volcanic basalt soils that give it grip and minerality. Serious, age-worthy, and one of the more distinctive bottles in this pulse.</span>
-        <div class="wine-price-row"><span class="wine-price">$70</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
-
-    <a class="wine-card" href="https://www.petitphilippe.com/copy-of-brittan-vineyards-cygnus-block-mcminnville.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001670/500x700x1/brittan-vineyards-brittan-vineyards-cygnus-block-m.jpg" alt="Brittan Vineyards Cygnus Block Pinot Noir 2021">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2021</span>
-        <span class="wine-name">'Cygnus Block' McMinnville Pinot Noir</span>
-        <span class="wine-descriptor">Single-block Pinot with concentration and structure. A 2021 vintage that shows the depth this estate is capable of when working with a defined site.</span>
-        <div class="wine-price-row"><span class="wine-price">$70</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
-
-    <a class="wine-card" href="https://www.petitphilippe.com/brittan-vineyards-gestalt-block-mcminnville-pinot.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001690/500x700x1/brittan-vineyards-brittan-vineyards-gestalt-block.jpg" alt="Brittan Vineyards Gestalt Block Pinot Noir 2022">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2022</span>
-        <span class="wine-name">'Gestalt Block' McMinnville Pinot Noir</span>
-        <span class="wine-descriptor">The name fits: a wine that is more than the sum of its parts. Seamless, complex, and arguably the strongest buy in the block-designate lineup.</span>
-        <div class="wine-price-row"><span class="wine-price">$70</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
-
-    <a class="wine-card" href="https://www.petitphilippe.com/copy-of-brittan-vineyards-cygnus-block-mc-69731116.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001568/500x700x1/brittan-vineyards-brittan-vineyards-heritage-block.jpg" alt="Brittan Vineyards Heritage Block Pinot Noir 2021">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Pinot Noir &nbsp;·&nbsp; 2021</span>
-        <span class="wine-name">'Heritage Block' McMinnville Pinot Noir</span>
-        <span class="wine-descriptor">Our longtime shelf pick — if you've had Brittan before, this is likely the bottle you remember. Familiar, layered, cellar-worthy.</span>
-        <div class="wine-price-row"><span class="wine-price">$73</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
-
-  </div>
-
-  <p class="wine-group-label">Beyond Pinot</p>
-  <div class="wines-grid grid-single">
-
-    <a class="wine-card" href="https://www.petitphilippe.com/copy-of-brittan-vineyards-estate-syrah-2018.html" target="_top">
-      <div class="wine-img-wrap">
-        <img src="https://cdn.shoplightspeed.com/shops/640383/files/75001713/500x700x1/brittan-vineyards-brittan-vineyards-estate-syrah-2.jpg" alt="Brittan Vineyards Estate Syrah 2019">
-      </div>
-      <div class="wine-card-body">
-        <span class="wine-type">Syrah &nbsp;·&nbsp; 2019</span>
-        <span class="wine-name">Estate Syrah</span>
-        <span class="wine-descriptor">Oregon Syrah is underappreciated — and Brittan's is a case study in why it shouldn't be. Savory, cool-climate, and well into its drinking window.</span>
-        <div class="wine-price-row"><span class="wine-price">$50</span></div>
-        <span class="wine-cta">View Bottle</span>
-      </div>
-    </a>
-
-  </div>
-
-</section>
-
-<!-- CLOSING NOTE -->
-<div class="closing-note">
-  <p>Once this window closes, we move on.<br>We don't hold these back.</p>
-  <span class="closing-line">Window closes Friday, March 20 at 3 PM</span>
 </div>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <div class="footer-note">
   <p>
-    Available while allocation lasts. Shipping available to select states.<br>
     Questions? <a href="mailto:info@petitphilippe.com">Reach us by email</a> or call <a href="tel:7043329910">(704) 332-9910</a>.
   </p>
 </div>
 
+<!-- Height reporter — do not edit -->
 <script>
   function reportHeight() {
     var h = Math.max(
