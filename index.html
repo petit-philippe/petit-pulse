@@ -609,25 +609,8 @@
     font-weight: 300;
     color: var(--text-mid);
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
-
-  .pp-signup-btn {
-    display: inline-block;
-    background: var(--header-bg);
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.63rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 0.75rem 2rem;
-    border-radius: 2px;
-    transition: background 0.2s ease;
-  }
-
-  .pp-signup-btn:hover { background: #4a0f12; }
 
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
@@ -787,13 +770,20 @@
 
   </div>
 
-  <!-- Signup section — links to CC hosted landing page -->
+  <!-- Signup section — CC landing page embedded directly -->
   <div class="pp-signup-section-inner" id="pp-signup">
     <span class="pp-signup-eyebrow">Petit Philippe</span>
     <p class="pp-signup-title">Petit <em>Pulse</em></p>
     <div class="pp-signup-rule"></div>
     <p class="pp-signup-support">Be the first to know when a new Petit Pulse is shared.</p>
-    <a class="pp-signup-btn" href="https://lp.constantcontactpages.com/sl/w4GGRb8/petitpulse" target="_top">Join the List</a>
+    <iframe
+      src="https://lp.constantcontactpages.com/sl/w4GGRb8/petitpulse"
+      title="Join the Petit Pulse list"
+      frameborder="0"
+      scrolling="no"
+      style="width:100%;min-height:480px;border:none;display:block;margin-top:0.5rem;"
+      onload="this.style.minHeight = this.contentWindow.document.body.scrollHeight + 'px'"
+    ></iframe>
   </div>
 
 </div>
