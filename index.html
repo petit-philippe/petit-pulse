@@ -6,6 +6,7 @@
 <title>Petit Pulse — Petit Philippe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
 
 
 <style>
@@ -334,6 +335,13 @@
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    /* button reset */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    line-height: inherit;
   }
 
   .inactive-cta-link::after { content: '↓'; font-size: 0.8rem; }
@@ -512,6 +520,13 @@
     align-items: center;
     gap: 0.3rem;
     margin-top: 0.25rem;
+    /* button reset */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    line-height: inherit;
   }
 
   .cta-cell-link::after { content: '→'; font-size: 0.78rem; }
@@ -538,6 +553,276 @@
   }
 
   .footer-note a:hover { text-decoration: underline; }
+
+  /* ── SIGNUP MODAL ── */
+  .pp-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 18, 14, 0.62);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .pp-modal-overlay.is-open {
+    display: flex;
+    animation: overlayIn 0.25s ease both;
+  }
+
+  @keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .pp-modal {
+    background: #fff;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 460px;
+    padding: 2.75rem 2.5rem 2.25rem;
+    position: relative;
+    animation: modalIn 0.28s ease both;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 520px) {
+    .pp-modal {
+      padding: 2.25rem 1.75rem 2rem;
+    }
+  }
+
+  .pp-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--taupe);
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.15s ease;
+  }
+
+  .pp-modal-close:hover { color: var(--charcoal); }
+
+  .pp-modal-eyebrow {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .pp-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+  }
+
+  .pp-modal-title em {
+    font-style: italic;
+    color: var(--text-mid);
+  }
+
+  .pp-modal-support {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.98rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .pp-modal-rule {
+    width: 28px;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.75rem;
+  }
+
+  /* ── CC FORM OVERRIDES ──
+     Scoped entirely to .pp-modal so no global styles are affected.
+     Targets rendered CC DOM — adjust specificity if CC updates its markup.
+  ── */
+  .pp-modal .ctct-inline-form,
+  .pp-modal .ctct-form-defaults,
+  .pp-modal .ctct-form-wrapper {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: 'Jost', sans-serif !important;
+  }
+
+  /* Hide CC header/title — we have our own */
+  .pp-modal .ctct-form-header,
+  .pp-modal .ctct-form-logo,
+  .pp-modal h2.ctct-form-title {
+    display: none !important;
+  }
+
+  /* Field labels */
+  .pp-modal .ctct-form-field label,
+  .pp-modal label.ctct-form-label {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.63rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--text-mid) !important;
+    margin-bottom: 0.35rem !important;
+    display: block !important;
+  }
+
+  /* Required asterisk — de-emphasize */
+  .pp-modal .ctct-form-required,
+  .pp-modal span.ctct-form-required {
+    color: var(--taupe) !important;
+    font-size: 0.6em !important;
+  }
+
+  /* Input fields */
+  .pp-modal input[type="text"],
+  .pp-modal input[type="email"],
+  .pp-modal .ctct-form-element {
+    width: 100% !important;
+    background: #fff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 2px !important;
+    padding: 0.6rem 0.75rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 300 !important;
+    color: var(--charcoal) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    transition: border-color 0.15s ease !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .pp-modal input[type="text"]:focus,
+  .pp-modal input[type="email"]:focus,
+  .pp-modal .ctct-form-element:focus {
+    border-color: var(--text-mid) !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Submit button */
+  .pp-modal input[type="submit"],
+  .pp-modal button[type="submit"],
+  .pp-modal .ctct-form-button,
+  .pp-modal button.ctct-form-button {
+    width: 100% !important;
+    background: var(--header-bg) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 2px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.63rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+    box-shadow: none !important;
+    margin-top: 0.25rem !important;
+    -webkit-appearance: none !important;
+  }
+
+  .pp-modal input[type="submit"]:hover,
+  .pp-modal button[type="submit"]:hover,
+  .pp-modal .ctct-form-button:hover {
+    background: #4a0f12 !important;
+  }
+
+  /* Legal / disclosure copy */
+  .pp-modal .ctct-form-footer,
+  .pp-modal .ctct-opt-in-reason,
+  .pp-modal p.ctct-form-footer,
+  .pp-modal .ctct-disclosure {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.62rem !important;
+    color: var(--taupe) !important;
+    line-height: 1.55 !important;
+    margin-top: 1rem !important;
+    font-weight: 300 !important;
+  }
+
+  .pp-modal .ctct-form-footer a,
+  .pp-modal .ctct-disclosure a {
+    color: var(--taupe) !important;
+    text-decoration: underline !important;
+  }
+
+  /* CC branding badge — minimize */
+  .pp-modal .ctct-form-by-line,
+  .pp-modal .ctct-form-powered-by,
+  .pp-modal a.ctct-form-footer-link {
+    opacity: 0.35 !important;
+    font-size: 0.58rem !important;
+  }
+
+  /* Success state */
+  .pp-modal .ctct-form-success,
+  .pp-modal .ctct-form-success-message {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: center !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 300 !important;
+    color: var(--text-mid) !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Custom success state — shown via JS after CC success fires */
+  .pp-modal-success {
+    display: none;
+    text-align: center;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .pp-modal-success.is-visible { display: block; }
+
+  .pp-modal-success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+
+  .pp-modal-success-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  .pp-modal-form-area { display: block; }
+  .pp-modal-form-area.is-hidden { display: none; }
 
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
@@ -633,7 +918,7 @@
   </p>
   <div class="inactive-ctas">
     <a class="inactive-cta-link" href="#archive">Explore previous features</a>
-    <a class="inactive-cta-link no-arrow" href="https://www.petitphilippe.com/shop-region/">Browse the shop →</a>
+    <button class="inactive-cta-link no-arrow" id="open-signup-modal-2">Join the list →</button>
   </div>
 </section>
 
@@ -670,11 +955,11 @@
 <div class="cta-rail">
   <div class="cta-rail-inner">
 
-    <!-- Cell 1: Email signup -->
+    <!-- Cell 1: Email signup — triggers modal -->
     <div class="cta-cell">
       <span class="cta-cell-label">Get Notified</span>
       <p class="cta-cell-text">Be among the first to know when a new Petit Pulse is shared.</p>
-      <a class="cta-cell-link" href="https://lp.constantcontactpages.com/su/petit-pulse" target="_top">Join the List</a>
+      <button class="cta-cell-link" id="open-signup-modal">Join the List</button>
     </div>
 
     <div class="cta-rail-divider"></div>
@@ -705,6 +990,35 @@
   </p>
 </div>
 
+<!-- ── SIGNUP MODAL ── -->
+<div class="pp-modal-overlay" id="pp-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pp-modal-heading">
+
+  <div class="pp-modal" id="pp-modal">
+
+    <button class="pp-modal-close" id="pp-modal-close" aria-label="Close">&#215;</button>
+
+    <span class="pp-modal-eyebrow">Petit Philippe</span>
+    <h2 class="pp-modal-title" id="pp-modal-heading">Petit <em>Pulse</em></h2>
+    <div class="pp-modal-rule"></div>
+    <p class="pp-modal-support">Be the first to know when a new Petit Pulse is shared.</p>
+
+    <!-- Form area — hidden after successful submission -->
+    <div class="pp-modal-form-area" id="pp-modal-form-area">
+      <!-- Begin Constant Contact Inline Form Code -->
+      <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
+      <!-- End Constant Contact Inline Form Code -->
+    </div>
+
+    <!-- Custom success state — revealed by JS after CC submission -->
+    <div class="pp-modal-success" id="pp-modal-success">
+      <p class="pp-modal-success-title">Thank you.</p>
+      <p class="pp-modal-success-body">You'll hear from us when something<br>worth sharing comes across our counter.</p>
+    </div>
+
+  </div>
+
+</div>
+
 <!-- Height reporter — do not edit -->
 <script>
   function reportHeight() {
@@ -719,6 +1033,89 @@
   window.addEventListener('load', reportHeight);
   window.addEventListener('resize', reportHeight);
   [200, 600, 1000, 1800, 3000].forEach(function(t) { setTimeout(reportHeight, t); });
+</script>
+
+<script>
+  (function () {
+    var overlay   = document.getElementById('pp-modal-overlay');
+    var openBtn   = document.getElementById('open-signup-modal');
+    var openBtn2  = document.getElementById('open-signup-modal-2');
+    var closeBtn  = document.getElementById('pp-modal-close');
+    var formArea  = document.getElementById('pp-modal-form-area');
+    var success   = document.getElementById('pp-modal-success');
+    var ccInited  = false;
+
+    function openModal() {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+
+      // CC widget only scans for .ctct-inline-form elements at script load time,
+      // before the modal is visible. On first open, force a re-scan by briefly
+      // making the form visible and calling the widget's own init if available,
+      // or falling back to a clone-swap trick to trigger a fresh DOM parse.
+      if (!ccInited) {
+        ccInited = true;
+        setTimeout(function () {
+          var placeholder = formArea.querySelector('.ctct-inline-form');
+          if (placeholder) {
+            // Clone-swap forces CC's MutationObserver (if any) to re-process
+            var clone = placeholder.cloneNode(true);
+            placeholder.parentNode.replaceChild(clone, placeholder);
+          }
+          // If CC exposes a public init method, call it
+          if (window.ConstantContact && typeof window.ConstantContact.init === 'function') {
+            window.ConstantContact.init();
+          }
+          // Re-attach observer to new node
+          attachObserver();
+        }, 80);
+      }
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // Return focus to whichever button opened it
+      if (document.activeElement === closeBtn) {
+        if (openBtn) openBtn.focus();
+      }
+    }
+
+    function attachObserver() {
+      var target = formArea;
+      if (!target) return;
+      var observer = new MutationObserver(function () {
+        var ccSuccess = target.querySelector('.ctct-form-success');
+        if (ccSuccess) {
+          formArea.classList.add('is-hidden');
+          success.classList.add('is-visible');
+          observer.disconnect();
+        }
+      });
+      observer.observe(target, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    }
+
+    // Initial observer attachment (catches cases where CC loads after DOM ready)
+    attachObserver();
+
+    if (openBtn)  openBtn.addEventListener('click', openModal);
+    if (openBtn2) openBtn2.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Close on overlay click (outside modal card)
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+  })();
 </script>
 
 </body>
