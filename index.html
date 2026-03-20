@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
-<script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
 
 
 <style>
@@ -613,6 +612,23 @@
     margin-bottom: 1.5rem;
   }
 
+  .pp-signup-btn {
+    display: inline-block;
+    background: var(--header-bg);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+
+  .pp-signup-btn:hover { background: #4a0f12; }
+
   /* ── ANIMATIONS ── */
   @media (prefers-reduced-motion: no-preference) {
     .pp-header { animation: fadeUp 0.5s ease both; }
@@ -771,15 +787,13 @@
 
   </div>
 
-  <!-- Signup section — sits flush below the rail, always visible -->
+  <!-- Signup section — links to CC hosted landing page -->
   <div class="pp-signup-section-inner" id="pp-signup">
     <span class="pp-signup-eyebrow">Petit Philippe</span>
     <p class="pp-signup-title">Petit <em>Pulse</em></p>
     <div class="pp-signup-rule"></div>
     <p class="pp-signup-support">Be the first to know when a new Petit Pulse is shared.</p>
-    <!-- Begin Constant Contact Inline Form Code -->
-    <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
-    <!-- End Constant Contact Inline Form Code -->
+    <a class="pp-signup-btn" href="https://lp.constantcontactpages.com/sl/w4GGRb8/petitpulse" target="_top">Join the List</a>
   </div>
 
 </div>
