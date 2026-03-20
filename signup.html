@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petit Pulse — Stay in the Loop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src='//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js' async defer></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pp-red: #C0302E;
+    --taupe: #c4b49a;
+    --charcoal: #2a2a2a;
+    --warm-white: #faf8f5;
+    --text-mid: #5c5348;
+    --border: #ddd6cc;
+    --header-bg: #6e1a1f;
+  }
+
+  html, body {
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    /* No scrollbars — this is an embedded frame */
+    overflow: hidden;
+  }
+
+  .signup-wrap {
+    padding: 2rem 2rem 1.5rem;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .signup-eyebrow {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .signup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-title em {
+    font-style: italic;
+    color: var(--text-mid);
+  }
+
+  .signup-rule {
+    width: 24px;
+    height: 1px;
+    background: var(--border);
+    margin: 0.85rem auto 0.9rem;
+  }
+
+  .signup-support {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.65;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── CC FORM OVERRIDES ── */
+  .ctct-inline-form,
+  .ctct-form-defaults,
+  .ctct-form-wrapper {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: 'Jost', sans-serif !important;
+  }
+
+  /* Hide CC's own header — we have ours */
+  .ctct-form-header,
+  .ctct-form-logo,
+  h2.ctct-form-title {
+    display: none !important;
+  }
+
+  /* Labels */
+  .ctct-form-field label,
+  label.ctct-form-label {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.63rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--text-mid) !important;
+    margin-bottom: 0.3rem !important;
+    display: block !important;
+  }
+
+  /* Required asterisk */
+  .ctct-form-required,
+  span.ctct-form-required {
+    color: var(--taupe) !important;
+    font-size: 0.6em !important;
+  }
+
+  /* Inputs */
+  input[type="text"],
+  input[type="email"],
+  .ctct-form-element {
+    width: 100% !important;
+    background: #fff !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 2px !important;
+    padding: 0.55rem 0.7rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 300 !important;
+    color: var(--charcoal) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    transition: border-color 0.15s ease !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  .ctct-form-element:focus {
+    border-color: var(--text-mid) !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Submit button */
+  input[type="submit"],
+  button[type="submit"],
+  .ctct-form-button,
+  button.ctct-form-button {
+    width: 100% !important;
+    background: var(--header-bg) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 2px !important;
+    padding: 0.7rem 1.5rem !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.63rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+    box-shadow: none !important;
+    margin-top: 0.25rem !important;
+    -webkit-appearance: none !important;
+  }
+
+  input[type="submit"]:hover,
+  button[type="submit"]:hover,
+  .ctct-form-button:hover {
+    background: #4a0f12 !important;
+  }
+
+  /* Legal / disclosure */
+  .ctct-form-footer,
+  .ctct-opt-in-reason,
+  p.ctct-form-footer,
+  .ctct-disclosure {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 0.6rem !important;
+    color: var(--taupe) !important;
+    line-height: 1.5 !important;
+    margin-top: 0.85rem !important;
+    font-weight: 300 !important;
+  }
+
+  .ctct-form-footer a,
+  .ctct-disclosure a {
+    color: var(--taupe) !important;
+    text-decoration: underline !important;
+  }
+
+  /* CC branding — minimize */
+  .ctct-form-by-line,
+  .ctct-form-powered-by,
+  a.ctct-form-footer-link {
+    opacity: 0.3 !important;
+    font-size: 0.55rem !important;
+  }
+
+  /* ── SUCCESS STATE ──
+     Hide CC's default success and show ours instead */
+  .ctct-form-success {
+    display: none !important;
+  }
+
+  .pp-success {
+    display: none;
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+  }
+
+  .pp-success.is-visible { display: block; }
+
+  .pp-success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 0.65rem;
+  }
+
+  .pp-success-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  .pp-form-area.is-hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="signup-wrap">
+
+  <span class="signup-eyebrow">Petit Philippe</span>
+  <h1 class="signup-title">Petit <em>Pulse</em></h1>
+  <div class="signup-rule"></div>
+  <p class="signup-support">Be the first to know when a new Petit Pulse is shared.</p>
+
+  <div class="pp-form-area" id="pp-form-area">
+    <!-- Begin Constant Contact Inline Form Code -->
+    <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
+    <!-- End Constant Contact Inline Form Code -->
+  </div>
+
+  <div class="pp-success" id="pp-success">
+    <p class="pp-success-title">Thank you.</p>
+    <p class="pp-success-body">You'll hear from us when something<br>worth sharing comes across our counter.</p>
+  </div>
+
+</div>
+
+<script>
+  // Watch for CC success state and swap in custom confirmation
+  var formArea = document.getElementById('pp-form-area');
+  var success  = document.getElementById('pp-success');
+
+  var observer = new MutationObserver(function () {
+    var ccSuccess = formArea.querySelector('.ctct-form-success');
+    if (ccSuccess) {
+      formArea.classList.add('is-hidden');
+      success.classList.add('is-visible');
+      // Tell parent frame to update iframe height
+      notifyHeight();
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(formArea, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
+  });
+
+  // Report height to parent so the accordion drawer sizes correctly
+  function notifyHeight() {
+    var h = document.body.scrollHeight;
+    window.parent.postMessage({ type: 'pp-signup-height', height: h }, '*');
+  }
+
+  window.addEventListener('load', notifyHeight);
+  // Re-report after fonts and CC widget finish rendering
+  [300, 800, 1500].forEach(function (t) { setTimeout(notifyHeight, t); });
+</script>
+
+</body>
+</html>
