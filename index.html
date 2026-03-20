@@ -744,6 +744,11 @@
     padding: 0.5rem 0 0.25rem;
   }
 
+  .pp-accordion-inner--iframe {
+    padding: 0;
+    overflow: hidden;
+  }
+
   .pp-accordion-success.is-visible { display: block; }
 
   .pp-accordion-success-title {
@@ -925,30 +930,18 @@
 
   </div>
 
-  <!-- Accordion drawer — CC form lives here at full DOM visibility from page load.
-       max-height:0 + overflow:hidden hides it visually; CC initializes it normally. -->
+  <!-- Accordion drawer — signup.html loads as its own document so CC initializes cleanly -->
   <div class="pp-accordion-drawer" id="pp-accordion-drawer">
-    <div class="pp-accordion-inner">
-
-      <div class="pp-accordion-intro">
-        <p class="pp-accordion-title">Petit <em>Pulse</em></p>
-        <div class="pp-accordion-rule"></div>
-        <p class="pp-accordion-support">Be the first to know when a new Petit Pulse is shared.</p>
-      </div>
-
-      <!-- Form area -->
-      <div class="pp-accordion-form-area" id="pp-accordion-form-area">
-        <!-- Begin Constant Contact Inline Form Code -->
-        <div class="ctct-inline-form" data-form-id="5785fcaf-ed5a-4240-9bdc-a70d7f72f7e5"></div>
-        <!-- End Constant Contact Inline Form Code -->
-      </div>
-
-      <!-- Custom success state -->
-      <div class="pp-accordion-success" id="pp-accordion-success">
-        <p class="pp-accordion-success-title">Thank you.</p>
-        <p class="pp-accordion-success-body">You'll hear from us when something worth sharing comes across our counter.</p>
-      </div>
-
+    <div class="pp-accordion-inner pp-accordion-inner--iframe">
+      <iframe
+        id="pp-signup-frame"
+        src="signup.html"
+        title="Join the Petit Pulse list"
+        scrolling="no"
+        frameborder="0"
+        style="width:100%;display:block;border:none;"
+        height="320"
+      ></iframe>
     </div>
   </div>
 
@@ -980,14 +973,10 @@
 <script>
   (function () {
     var toggleBtn  = document.getElementById('toggle-signup');
-    var drawer     = document.getElementById('pp-accordion-drawer');
-    var formArea   = document.getElementById('pp-accordion-form-area');
-    var success    = document.getElementById('pp-accordion-success');
-
-    // Also wire the "Join the list" button in the inactive pulse module
     var toggleBtn2 = document.getElementById('open-signup-modal-2');
-
-    var rail = document.querySelector('.cta-rail-inner');
+    var drawer     = document.getElementById('pp-accordion-drawer');
+    var rail       = document.querySelector('.cta-rail-inner');
+    var frame      = document.getElementById('pp-signup-frame');
 
     function openDrawer() {
       drawer.classList.add('is-open');
@@ -1009,25 +998,13 @@
     if (toggleBtn)  toggleBtn.addEventListener('click', toggleDrawer);
     if (toggleBtn2) toggleBtn2.addEventListener('click', openDrawer);
 
-    // Watch for CC success and swap in custom confirmation
-    var observer = new MutationObserver(function () {
-      var ccSuccess = formArea && formArea.querySelector('.ctct-form-success');
-      if (ccSuccess) {
-        formArea.classList.add('is-hidden');
-        success.classList.add('is-visible');
+    // Listen for height updates from signup.html iframe
+    window.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'pp-signup-height' && frame) {
+        frame.style.height = (e.data.height + 16) + 'px';
         reportHeight();
-        observer.disconnect();
       }
     });
-
-    if (formArea) {
-      observer.observe(formArea, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class']
-      });
-    }
 
   })();
 </script>
